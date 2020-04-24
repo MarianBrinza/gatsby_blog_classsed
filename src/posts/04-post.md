@@ -3,6 +3,11 @@ title: 'Forth post - REACT'
 date: '04.04.2019'
 author: 'Jhon Doe4'
 path: '/04-post'
+img: '../images/1.jpg'
+tags: 
+ - html
+ - css
+ - js
 ---
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.

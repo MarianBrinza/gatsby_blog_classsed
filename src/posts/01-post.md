@@ -3,6 +3,9 @@ title: 'First post - HTML'
 date: '01.01.2019'
 author: 'Jhon Doe1'
 path: '/01-post'
+img: '../images/1.jpg'
+tags: 
+ - html
 ---
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.

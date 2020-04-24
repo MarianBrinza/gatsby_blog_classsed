@@ -3,6 +3,12 @@ title: 'Fifth post - GATSBY'
 date: '05.05.2019'
 author: 'Jhon Doe5'
 path: '/05-post'
+img: '../images/1.jpg'
+tags:
+ - html
+ - css
+ - js 
+ - react
 ---
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.

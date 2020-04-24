@@ -3,6 +3,9 @@ title: 'Second post - CSS'
 date: '02.02.2019'
 author: 'Jhon Doe2'
 path: '/02-post'
+img: '../images/1.jpg'
+tags: 
+ - css scss
 ---
 
 Lorem Ipsum is simply dummy text of the printing and typesetting industry.
