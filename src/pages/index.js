@@ -4,35 +4,48 @@ import Layout from '../components/layout';
 import SEO from '../components/seo';
 import { graphql, StaticQuery } from 'gatsby';
 import Post from '../components/post';
+import {Row, Col} from 'reactstrap';
 
 const IndexPage = () => (
   <Layout>
     <SEO title="Home"/>
     <h1>Home page</h1>
 
-    <StaticQuery
-      query={indexQuery}
-      render={(data) => {
-        return (
-          <div>
-            {
-              data.allMarkdownRemark.edges.map(({ node }, index) => {
-                const postData = node.frontmatter;
-                return (
-                  <Post
-                    title={postData.title}
-                    date={postData.date}
-                    author={postData.author}
-                    path={postData.path}
-                    key={index}
-                  />
-                );
-              })
-            }
-          </div>
-        );
-      }}
-    />
+    <Row>
+      <Col md='8'>
+        <StaticQuery
+          query={indexQuery}
+          render={(data) => {
+            return (
+              <div>
+                {
+                  data.allMarkdownRemark.edges.map(({ node }, index) => {
+                    const postData = node.frontmatter;
+
+                    return (
+                      <Post
+                        title={postData.title}
+                        date={postData.date}
+                        author={postData.author}
+                        path={postData.path}
+                        tags={postData.tags}
+                        fluid={postData.img.childImageSharp.fluid}
+                        key={index}
+                      />
+                    );
+                  })
+                }
+              </div>
+            );
+          }}
+        />
+      </Col>
+
+      <Col md='4'>
+        <div></div>
+      </Col>
+    </Row>
+
 
   </Layout>
 );
@@ -49,9 +62,28 @@ const indexQuery = graphql`
         node {
           frontmatter {
             title
+            path
             author
             date
-            path
+            tags
+            img {
+              childImageSharp {
+                fluid(maxWidth: 400) {
+                  base64
+                  tracedSVG
+                  srcWebp
+                  srcSetWebp
+                  originalImg
+                  originalName
+                  presentationWidth
+                  presentationHeight
+                  sizes
+                  srcSet
+                  src
+                  aspectRatio
+                }
+              }
+            }
           }
           id
           excerpt
