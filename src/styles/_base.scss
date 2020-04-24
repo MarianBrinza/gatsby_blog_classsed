@@ -1,23 +1,26 @@
 .container#content {
   margin-top: 60px;
 }
+
 body {
   background-color: $light-gray;
+  font-family: $site-font;
 }
+
 a {
   color: #0056b3;
+
   &:hover {
     color: #007bff;
     text-decoration: none;
   }
 }
-body {
-  font-family: $site-font;
-}
+
 h1 {
   margin-bottom: 20px;
   text-align: center;
 }
+
 .navbar {
   background-color: white;
   // border-right: 1px solid rgba(0, 0, 0, 0.4);
@@ -25,13 +28,16 @@ h1 {
   border-bottom: 1px solid rgba(0, 0, 0, 0.4);
   line-height: 1;
 }
+
 .navbar-light .navbar-nav .nav-link,
 .navbar-light .navbar-brand {
   color: #0056b3;
+
   &:hover {
     color: #007bff;
   }
 }
+
 ul {
   list-style: none;
   padding: 0;
