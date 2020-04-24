@@ -5,11 +5,18 @@ import CardBody from 'reactstrap/es/CardBody';
 import CardTitle from 'reactstrap/es/CardTitle';
 import CardSubtitle from 'reactstrap/es/CardSubtitle';
 import CardText from 'reactstrap/es/CardText';
+import Img from 'gatsby-image';
+import { slugify } from '../util/utility.js';
+import Badge from 'reactstrap/es/Badge';
 
-const Post = ({ title, date, author, body, path }) => {
+const Post = ({ title, date, author, body, path, fluid, tags }) => {
 
   return (
     <Card>
+      <Link to={path}>
+        <Img className='card-img-top' fluid={fluid}/>
+      </Link>
+
       <CardBody>
         <CardTitle>
           <Link to={path}>{title}</Link>
@@ -18,6 +25,24 @@ const Post = ({ title, date, author, body, path }) => {
           <span className='text-info'>{date}</span>
           <span> by </span>
           <span className='text-info'>{author}</span>
+          <br/>
+          <ul className="post-tags">
+            {
+              tags.map((tag, index) => {
+                  return (
+                    <li key={index}>
+                      <Link to={`/tag/${slugify(tag)}`}>
+                        <Badge color='primary' className='text-uppercase'>
+                          {tag}
+                        </Badge>
+                      </Link>
+                    </li>
+                  );
+                }
+              )
+            }
+          </ul>
+
         </CardSubtitle>
         <CardText>{body}</CardText>
         <Link to={path} className='btn btn-outline-primary float-right'>Read mode</Link>
