@@ -13,17 +13,17 @@ const Footer = () => {
       <div className='footer-social-links'>
         <ul className="social-links-list">
           <li>
-            <a href="#" target='_blank' rel='noopener noreferrer' className='facebook'>
+            <a href="http://www.fakedomain_.com" target='_blank' rel='noopener noreferrer' className='facebook'>
               facebook icon here
             </a>
           </li>
           <li>
-            <a href="#" target='_blank' rel='noopener noreferrer' className='twitter'>
+            <a href="http://www.fakedomain_.com" target='_blank' rel='noopener noreferrer' className='twitter'>
               twitter icon here
             </a>
           </li>
           <li>
-            <a href="#" target='_blank' rel='noopener noreferrer' className='google'>
+            <a href="http://www.fakedomain_.com" target='_blank' rel='noopener noreferrer' className='google'>
               google icon here
             </a>
           </li>
