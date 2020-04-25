@@ -1,7 +1,7 @@
 ---
 title: 'Third post - JS'
 date: '03.03.2019'
-author: 'Jhon Doe3'
+author: 'Jhon Does'
 img: '../images/1.jpg'
 tags: 
  - js

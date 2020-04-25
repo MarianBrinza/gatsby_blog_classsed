@@ -1,7 +1,7 @@
 ---
 title: 'Forth post - REACT'
 date: '04.04.2019'
-author: 'Jhon Doe4'
+author: 'Jane Doe'
 img: '../images/1.jpg'
 tags: 
  - html

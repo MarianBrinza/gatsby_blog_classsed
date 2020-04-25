@@ -1,7 +1,7 @@
 ---
 title: 'First post - HTML'
 date: '01.01.2019'
-author: 'Jhon Doe1'
+author: 'Jhon Doe'
 img: '../images/1.jpg'
 tags: 
  - html

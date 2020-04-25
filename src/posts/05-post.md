@@ -1,7 +1,7 @@
 ---
 title: 'Fifth post - GATSBY'
 date: '05.05.2019'
-author: 'Jhon Doe5'
+author: 'Jhon Doe'
 img: '../images/1.jpg'
 tags:
  - html

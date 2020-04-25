@@ -1,7 +1,7 @@
 ---
 title: 'Second post - CSS'
 date: '02.02.2019'
-author: 'Jhon Doe2'
+author: 'Jane Doe'
 img: '../images/1.jpg'
 tags: 
  - css scss
