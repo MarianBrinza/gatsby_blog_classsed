@@ -1,10 +1,5 @@
 import React from 'react';
-import CardBody from 'reactstrap/es/CardBody';
-import CardTitle from 'reactstrap/es/CardTitle';
-import Card from 'reactstrap/es/Card';
-import Form from 'reactstrap/es/Form';
-import FormGroup from 'reactstrap/es/FormGroup';
-import Input from 'reactstrap/es/Input';
+import { Card, CardBody, CardTitle, Form, FormGroup, Input } from 'reactstrap/es';
 import { graphql, Link, StaticQuery } from 'gatsby';
 import Img from 'gatsby-image';
 
@@ -78,38 +73,38 @@ const Sidebar = () => {
 };
 
 const lastTwoPosts = graphql`
-  query query2 {
-    allMarkdownRemark(
-      sort: {
-      fields: frontmatter___date,
-      order: DESC
-      },
-      limit: 2
-    ){
-      edges {
-        node {
-          id
-          excerpt
-          fields {
-            slug
-          }
-          frontmatter {
-            title
-            author
-            date
-            tags
-            img {
-              childImageSharp {
-                fluid(maxWidth: 400) {
-                  ...GatsbyImageSharpFluid
+    query query2 {
+        allMarkdownRemark(
+            sort: {
+                fields: frontmatter___date,
+                order: DESC
+            },
+            limit: 2
+        ){
+            edges {
+                node {
+                    id
+                    excerpt
+                    fields {
+                        slug
+                    }
+                    frontmatter {
+                        title
+                        author
+                        date
+                        tags
+                        img {
+                            childImageSharp {
+                                fluid(maxWidth: 400) {
+                                    ...GatsbyImageSharpFluid
+                                }
+                            }
+                        }
+                    }
                 }
-              }
             }
-          }          
         }
-      }
     }
-  }
 `;
 
 export default Sidebar;

@@ -1,15 +1,9 @@
 import React from 'react';
 import Layout from '../components/layout';
-import Sidebar from '../components/sidebar';
 import { graphql, Link } from 'gatsby';
 import SEO from '../components/seo';
-import CardBody from 'reactstrap/es/CardBody';
-import CardSubtitle from 'reactstrap/es/CardSubtitle';
-import Badge from 'reactstrap/es/Badge';
+import { Badge, Card, CardBody, CardSubtitle } from 'reactstrap/es';
 import { slugify } from '../util/utility';
-import Col from 'reactstrap/es/Col';
-import Row from 'reactstrap/es/Row';
-import Card from 'reactstrap/es/Card';
 import Img from 'gatsby-image';
 
 const SinglePost = (props) => {
@@ -17,45 +11,36 @@ const SinglePost = (props) => {
   const post = data.markdownRemark.frontmatter;
 
   return (
-    <Layout>
+    <Layout pageTitle={post.title}>
       <SEO title={post.title}/>
-      <h1>{post.title}</h1>
-      <Row>
-        <Col md='8'>
-          <Card>
-            <Img className='card-img-top' fluid={post.img.childImageSharp.fluid}/>
-            <CardBody>
-              <CardSubtitle>
-                <span className="text-info">{post.date}</span>
-                <span> by </span>
-                <span className=" text-info">{post.author}</span>
-              </CardSubtitle>
 
-              <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}>
-              </div>
-              <ul className="post-tags">
-                {
-                  post.tags.map((tag, index) => {
-                    return (
-                      <li key={index}>
-                        <Link to={`/tag/${slugify(tag)}`}>
-                          <Badge color='primary'>{tag}</Badge>
-                        </Link>
-                      </li>
-                    );
-                  })
-                }
-              </ul>
+      <Card>
+        <Img className='card-img-top' fluid={post.img.childImageSharp.fluid}/>
+        <CardBody>
+          <CardSubtitle>
+            <span className="text-info">{post.date}</span>
+            <span> by </span>
+            <span className=" text-info">{post.author}</span>
+          </CardSubtitle>
 
-            </CardBody>
-          </Card>
-        </Col>
+          <div dangerouslySetInnerHTML={{ __html: data.markdownRemark.html }}>
+          </div>
+          <ul className="post-tags">
+            {
+              post.tags.map((tag, index) => {
+                return (
+                  <li key={index}>
+                    <Link to={`/tag/${slugify(tag)}`}>
+                      <Badge color='primary'>{tag}</Badge>
+                    </Link>
+                  </li>
+                );
+              })
+            }
+          </ul>
 
-        <Col md='4'>
-          <Sidebar/>
-        </Col>
-      </Row>
-
+        </CardBody>
+      </Card>
 
     </Layout>
   );

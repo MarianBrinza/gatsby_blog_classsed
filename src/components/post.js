@@ -1,13 +1,8 @@
 import React from 'react';
 import { Link } from 'gatsby';
-import Card from 'reactstrap/es/Card';
-import CardBody from 'reactstrap/es/CardBody';
-import CardTitle from 'reactstrap/es/CardTitle';
-import CardSubtitle from 'reactstrap/es/CardSubtitle';
-import CardText from 'reactstrap/es/CardText';
+import { Badge, Card, CardBody, CardSubtitle, CardText, CardTitle } from 'reactstrap/es';
 import Img from 'gatsby-image';
 import { slugify } from '../util/utility.js';
-import Badge from 'reactstrap/es/Badge';
 
 const Post = ({ title, date, author, body, slug, fluid, tags }) => {
 
@@ -29,17 +24,17 @@ const Post = ({ title, date, author, body, slug, fluid, tags }) => {
           <ul className="post-tags">
             {
               tags.map((tag, index) => {
-                  return (
-                    <li key={index}>
-                      <Link to={`/tag/${slugify(tag)}`}>
-                        <Badge color='primary' className='text-uppercase'>
-                          {tag}
-                        </Badge>
-                      </Link>
-                    </li>
-                  );
-                }
-              )
+                return (
+                  <li key={index}>
+                    <Link to={`/tag/${slugify(tag)}`}>
+                      <Badge color='primary' className='text-uppercase'>
+                        {tag}
+                      </Badge>
+                    </Link>
+                  </li>
+                );
+              }
+            )
             }
           </ul>
 
