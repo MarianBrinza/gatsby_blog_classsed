@@ -22,13 +22,14 @@ const IndexPage = () => (
                 {
                   data.allMarkdownRemark.edges.map(({ node }, index) => {
                     const postData = node.frontmatter;
+                    const slug = node.fields.slug;
 
                     return (
                       <Post
                         title={postData.title}
                         date={postData.date}
                         author={postData.author}
-                        path={postData.path}
+                        slug={slug}
                         tags={postData.tags}
                         fluid={postData.img.childImageSharp.fluid}
                         key={index}
@@ -61,9 +62,13 @@ const indexQuery = graphql`
     ){
       edges {
         node {
+          id
+          excerpt
+          fields {
+            slug
+          }
           frontmatter {
             title
-            path
             author
             date
             tags
@@ -74,9 +79,7 @@ const indexQuery = graphql`
                 }
               }
             }
-          }
-          id
-          excerpt
+          }          
         }
       }
     }
