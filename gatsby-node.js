@@ -6,6 +6,7 @@
 
 const { slugify } = require('./src/util/utility');
 const path = require('path');
+const authors = require('./src/util/authors');
 
 // create and attach the fields object with the slug property
 exports.onCreateNode = ({ node, actions }) => {
@@ -49,12 +50,22 @@ exports.createPages = ({ actions, graphql }) => {
     const posts = res.data.allMarkdownRemark.edges;
 
     posts.forEach(({ node }) => {
+
+      let authorPic = authors.find(author => author.name === node.frontmatter.author);
+      if (authorPic) {
+        authorPic = authorPic.imageUrl;
+      } else {
+        authorPic = 'default.png';
+      }
+
       createPage({
         path: node.fields.slug,
         component: singlePageTemplate,
         context: {
           // passing slug for template to  use to get the post
-          slug: node.fields.slug
+          slug: node.fields.slug,
+          // find author img url from authors and pass it to the single post template
+          imageUrl: authorPic
         }
       });
     });
