@@ -5,6 +5,7 @@ import SEO from '../components/seo';
 import { graphql, StaticQuery } from 'gatsby';
 import Post from '../components/post';
 import {Row, Col} from 'reactstrap';
+import Sidebar from '../components/sidebar';
 
 const IndexPage = () => (
   <Layout>
@@ -42,7 +43,7 @@ const IndexPage = () => (
       </Col>
 
       <Col md='4'>
-        <div></div>
+        <Sidebar/>
       </Col>
     </Row>
 
@@ -69,18 +70,7 @@ const indexQuery = graphql`
             img {
               childImageSharp {
                 fluid(maxWidth: 400) {
-                  base64
-                  tracedSVG
-                  srcWebp
-                  srcSetWebp
-                  originalImg
-                  originalName
-                  presentationWidth
-                  presentationHeight
-                  sizes
-                  srcSet
-                  src
-                  aspectRatio
+                  ...GatsbyImageSharpFluid
                 }
               }
             }
