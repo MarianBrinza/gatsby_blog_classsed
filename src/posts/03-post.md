@@ -2,7 +2,6 @@
 title: 'Third post - JS'
 date: '03.03.2019'
 author: 'Jhon Doe3'
-path: '/03-post'
 img: '../images/1.jpg'
 tags: 
  - js
