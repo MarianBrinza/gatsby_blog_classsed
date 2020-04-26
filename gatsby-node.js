@@ -7,6 +7,7 @@
 const { slugify } = require('./src/util/utility');
 const path = require('path');
 const authors = require('./src/util/authors');
+const _ = require('lodash');
 
 // create and attach the fields object with the slug property
 exports.onCreateNode = ({ node, actions }) => {
@@ -22,10 +23,14 @@ exports.onCreateNode = ({ node, actions }) => {
   }
 };
 
+// dinamicaly create a new page for each post (markdown file)
 exports.createPages = ({ actions, graphql }) => {
 
   const { createPage } = actions;
-  const singlePageTemplate = path.resolve('src/templates/single-post.js');
+  const templates = {
+    singlePageTemplate: path.resolve('src/templates/single-post.js'),
+    tagsPage: path.resolve('src/templates/tags-page.js')
+  };
 
   return graphql(`
     {  
@@ -48,7 +53,9 @@ exports.createPages = ({ actions, graphql }) => {
       return Promise.reject(res.errors);
     }
     const posts = res.data.allMarkdownRemark.edges;
+    console.log('posts[0].node.frontmatter.tags: ', posts[3].node.frontmatter.tags);
 
+    // create single blog post pages
     posts.forEach(({ node }) => {
 
       let authorPic = authors.find(author => author.name === node.frontmatter.author);
@@ -60,7 +67,7 @@ exports.createPages = ({ actions, graphql }) => {
 
       createPage({
         path: node.fields.slug,
-        component: singlePageTemplate,
+        component: templates.singlePageTemplate,
         context: {
           // passing slug for template to  use to get the post
           slug: node.fields.slug,
@@ -68,6 +75,40 @@ exports.createPages = ({ actions, graphql }) => {
           imageUrl: authorPic
         }
       });
+    });
+
+    // logic for the tags page - get all tags
+    let tags = [];
+
+    // bad implementation, pure js is better
+    /*
+      _.each(posts, edge => {
+        if (_.get(edge, 'node.frontmatter.tag')) {
+          tags = tags.concat(edge.node.frontmatter.tag);
+        }
+      });
+     */
+
+    // my version - pure js
+    posts.forEach(post => {
+      tags.push(...post.node.frontmatter.tags);
+    });
+
+
+    let tagPostCounts = {};
+    tags.forEach(tag => tagPostCounts[tag] = (tagPostCounts[tag] || 0) + 1);
+
+    // remove duplicate tags
+    tags = _.uniq(tags);
+
+    // create tags page
+    createPage({
+      path: '/tags',
+      component: templates.tagsPage,
+      context: {
+        tags,
+        tagPostCounts
+      }
     });
   });
 
