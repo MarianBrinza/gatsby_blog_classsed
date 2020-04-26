@@ -8,10 +8,11 @@ import Img from 'gatsby-image';
 import authors from '../util/authors';
 
 const SinglePost = (props) => {
-  const { data } = props;
+  const { data, pageContext } = props;
   const post = data.markdownRemark.frontmatter;
   const author = authors.find(author => author.name === post.author);
   const authorImageFluid = data.file.childImageSharp.fluid;
+  const baseUrl = 'http://myawesomesite.com';
 
   return (
     <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={authorImageFluid}>
@@ -44,6 +45,25 @@ const SinglePost = (props) => {
 
         </CardBody>
       </Card>
+
+      <h3 className="text-center">Share this post</h3>
+      <div className="text-center social-share-links">
+        <ul>
+          <li>
+            <a href={'http://uuudomain.com/share/' + baseUrl + pageContext.share} target='_blank'
+               rel='noopener noreferrer'>Facebook</a>
+          </li>
+          <li>
+            <a href={'http://uuudomain.com/share/' + baseUrl + pageContext.share} target='_blank'
+               rel='noopener noreferrer'>Twitter</a>
+          </li>
+          <li>
+            <a href={'http://uuudomain.com/share/' + baseUrl + pageContext.share} target='_blank'
+               rel='noopener noreferrer'>YouTube</a>
+          </li>
+
+        </ul>
+      </div>
 
     </Layout>
   );
