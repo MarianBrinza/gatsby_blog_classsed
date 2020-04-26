@@ -6,13 +6,22 @@ import { Badge, Card, CardBody, CardSubtitle } from 'reactstrap/es';
 import { slugify } from '../util/utility';
 import Img from 'gatsby-image';
 import authors from '../util/authors';
+import { DiscussionEmbed } from 'disqus-react';
+
 
 const SinglePost = (props) => {
   const { data, pageContext } = props;
   const post = data.markdownRemark.frontmatter;
-  const author = authors.find(author => author.name === post.author);
-  const authorImageFluid = data.file.childImageSharp.fluid;
-  const baseUrl = 'http://myawesomesite.com';
+    const author = authors.find(author => author.name === post.author);
+    const authorImageFluid = data.file.childImageSharp.fluid;
+  const baseUrl = 'http://learngatsby.com/';
+
+  const disqusShortName = 'https-learngatsby-com';
+  const disqusConfig = {
+    identifier: data.markdownRemark.id,
+    title: post.title,
+    url: baseUrl + pageContext.slug
+  };
 
   return (
     <Layout pageTitle={post.title} postAuthor={author} authorImageFluid={authorImageFluid}>
@@ -64,6 +73,8 @@ const SinglePost = (props) => {
 
         </ul>
       </div>
+
+      <DiscussionEmbed shortname={disqusShortName} config={disqusConfig}/>
 
     </Layout>
   );
