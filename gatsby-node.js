@@ -31,7 +31,8 @@ exports.createPages = ({ actions, graphql }) => {
     singlePageTemplate: path.resolve('src/templates/single-post.js'),
     tagsPage: path.resolve('src/templates/tags-page.js'),
     tagPost: path.resolve('src/templates/tag-posts.js'),
-    postList: path.resolve('src/templates/post-list.js')
+    postList: path.resolve('src/templates/post-list.js'),
+    authorPosts: path.resolve('src/templates/author-posts.js')
   };
 
   return graphql(`
@@ -54,6 +55,8 @@ exports.createPages = ({ actions, graphql }) => {
     if (res.errors) {
       return Promise.reject(res.errors);
     }
+
+    /* CREATE POSTS SECTION */
     const posts = res.data.allMarkdownRemark.edges;
 
     // create single blog post pages
@@ -123,7 +126,7 @@ exports.createPages = ({ actions, graphql }) => {
       });
     });
 
-    // paginate posts
+    /* PAGINATION SECTION */
     // the posts are in posts array
     const postsPerPage = 3;
     const numberOfPages = Math.ceil(posts.length / postsPerPage);
@@ -147,9 +150,19 @@ exports.createPages = ({ actions, graphql }) => {
             numberOfPages
           }
         });
-
       });
 
+    /* AUTHORS SECTION */
+    authors.forEach(author => {
+      createPage({
+        path: `/authors/${slugify(author.name)}`,
+        component: templates.authorPosts,
+        context: {
+          authorName: author.name,
+          imageUrl: author.imageUrl
+        }
+      });
+    });
 
   });
 };
