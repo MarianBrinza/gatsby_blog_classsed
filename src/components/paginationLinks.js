@@ -10,7 +10,7 @@ const PaginationLinks = ({ currentPage, numberOfPages }) => {
 
   const previousPage = (currentPage - 1 === 1) ? '/' : '/page/' + (currentPage - 1).toString();
   const nextPage = '/page/' + (currentPage + 1).toString();
-  debugger;
+
   return (
     <Pagination aria-label='page navigation'>
       {/* left arrow */}
