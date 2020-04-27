@@ -46,6 +46,7 @@ const indexQuery = graphql`
                 fields: frontmatter___date,
                 order: DESC
             }
+            limit: 3
         ){
             edges {
                 node {
