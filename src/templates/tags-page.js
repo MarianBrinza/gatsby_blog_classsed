@@ -14,7 +14,7 @@ const TagsPage = ({ pageContext }) => {
           tags.map((tag, index) => {
             return (
               <li key={index}>
-                <Button color='primary' href={`/tag/${slugify(tag)}`} style={{marginBottom: '10px'}}>
+                <Button color='primary' href={`/tags/${slugify(tag)}`} style={{marginBottom: '10px'}}>
                   {tag} <Badge color='light'>{tagPostCounts[tag]}</Badge>
                 </Button>
               </li>

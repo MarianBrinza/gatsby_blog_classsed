@@ -43,7 +43,7 @@ const SinglePost = (props) => {
               post.tags.map((tag, index) => {
                 return (
                   <li key={index}>
-                    <Link to={`/tag/${slugify(tag)}`}>
+                    <Link to={`/tags/${slugify(tag)}`}>
                       <Badge color='primary'>{tag}</Badge>
                     </Link>
                   </li>
