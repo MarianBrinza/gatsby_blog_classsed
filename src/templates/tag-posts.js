@@ -7,7 +7,7 @@ const TagPost = ({ data, pageContext }) => {
   const { tag } = pageContext;
 
   const { totalCount } = data.allMarkdownRemark;
-  const pageHeader = `${totalCount} post${totalCount === 1 ? '' : 's'} tagged with "${tag}"`;
+  const pageHeader = `Found ${totalCount} post${totalCount === 1 ? '' : 's'} tagged with "${tag}"`;
   return (
     <Layout pageTitle={pageHeader}>
       {
